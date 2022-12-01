@@ -1,4 +1,0 @@
-```js
-	shift + ctrl + c
-```
-
