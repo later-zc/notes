@@ -15,9 +15,13 @@ Shift + Ctrl + c // 当前编辑器窗口打开cmd
 ---
 
 ```js
-Ctrl + ; // 指针跳转到当前行的行尾
-Ctrl + Enter // 在下面插入行
+shift + ; // 指针跳转到当前行的行尾
+shift + Enter // 在下面插入行
 ```
+
+
+
+
 
 
 
