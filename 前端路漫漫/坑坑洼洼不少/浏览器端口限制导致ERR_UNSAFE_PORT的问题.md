@@ -2,7 +2,7 @@
 
 - 在测试 `koa` 中部署静态资源时，监听的服务端口为 `6000`，在 `google` 浏览器中使用`localhost:6000`去访问某张图片时，浏览器报 `ERR_UNSAFE_PORT` 错误（其他一些浏览器也是如此），使用 `postman` 测试无问题，浏览器报错信息如下：
 
-<img src="assets/image-20230215141622397.png" alt="image-20230215141622397" style="zoom:80%;" />
+<img src="assets/image-20230215141622397.png" alt="image-20230215141622397" style="zoom: 50%;" />
 
 - 代码如下：
 
@@ -107,10 +107,10 @@
   6697,   // IRC + TLS
   10080,  // Amanda
   ```
-
-
-
-
+  
+  
+  
+  
 
 ## 解决
 
