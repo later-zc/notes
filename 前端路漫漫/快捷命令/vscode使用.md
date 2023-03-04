@@ -20,6 +20,8 @@ shift + alt + downsArrow // 向下复制当前行
 ctrl + enter // 在下面插入行
 ctrl + shift + enter // 在上面插入行
 
+Ctrl + Tab // 切换标签页
+
 // template
 tab // 当处于一个字符尾端时，可生成对应的组件形式的字符
 // 如：abb => <abb></abb>
