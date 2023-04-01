@@ -109,21 +109,21 @@
       var isMobile = start == 'touchstart'
       this.on(start, e => {
         var {pageX, pageY} = isMobile 
-        ? e.changedTouches[0]
-        : e
+          ? e.changedTouches[0]
+          : e
         this._timeStart = Date.now()
         this._posStart = [pageX, pageY]
         e.preventDefault() // 防止图片拖拽等
       })
       this.on(end, e => {
         var {pageX, pageY} = isMobile 
-        ? e.changedTouches[0]
-        : e
+          ? e.changedTouches[0]
+          : e
         var 
-        isMove = false, 
-            distLimit = 10,
-            distX = Math.abs(this._posStart[0] - pageX),
-            distY = Math.abs(this._posStart[1] - pageY)
+        	isMove = false, 
+          distLimit = 10,
+          distX = Math.abs(this._posStart[0] - pageX),
+          distY = Math.abs(this._posStart[1] - pageY)
         if (distX > distLimit || distY > distLimit) isMove = true
         if (!isMove && Date.now() - this._timeStart <= 300) cb(e)
         e.preventDefault()
