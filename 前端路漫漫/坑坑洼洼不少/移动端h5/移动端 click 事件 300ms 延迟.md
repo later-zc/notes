@@ -18,47 +18,47 @@
   ```html
   <!DOCTYPE html>
   <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8">
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Document</title>
-    <style>
-  		html, body {
-        width: 100%;
-        height: 100%;
-  			margin: 0;
-  			padding: 0;
-        font-size: 32px;
-  		}
-  		.box {
-        width: 200px;
-  			height: 200px;
-  			line-height: 200px;
-  			text-align: center;
-  			border: 2px solid #ccc;
-  		}
-  	</style>
-  </head>
-  <body>
-  	<div class="box">click me</div>
-  	<script>
-  		var startTime = +new Date()
+    <head>
+      <meta charset="UTF-8">
+      <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+      <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+      <title>Document</title>
+      <style>
+        html, body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          font-size: 32px;
+        }
+        .box {
+          width: 200px;
+          height: 200px;
+          line-height: 200px;
+          text-align: center;
+          border: 2px solid #ccc;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">click me</div>
+      <script>
+        var startTime = +new Date()
   
-  		function printInfo(e) {
-  			var div = document.createElement("div")
-  			div.innerHTML = `${+new Date()} —— ${+new Date() - startTime} —— ${e.type}`
-  			document.body.appendChild(div)
-  		};
-  		
-  		var box = document.querySelector('.box')
-  		box.addEventListener('mousedown', printInfo) // 鼠标按下
-  		box.addEventListener('click', printInfo) // 鼠标点击
-  		box.addEventListener('mouseup', printInfo) // 鼠标抬起
-  		box.addEventListener('touchstart', printInfo) // 触屏开始
-  		box.addEventListener('touchend', printInfo) // 触屏结束
-  	</script>
-  </body>
+        function printInfo(e) {
+          var div = document.createElement("div")
+          div.innerHTML = `${+new Date()} —— ${+new Date() - startTime} —— ${e.type}`
+          document.body.appendChild(div)
+        };
+  
+        var box = document.querySelector('.box')
+        box.addEventListener('mousedown', printInfo) // 鼠标按下
+        box.addEventListener('click', printInfo) // 鼠标点击
+        box.addEventListener('mouseup', printInfo) // 鼠标抬起
+        box.addEventListener('touchstart', printInfo) // 触屏开始
+        box.addEventListener('touchend', printInfo) // 触屏结束
+      </script>
+    </body>
   </html>
   ```
 
