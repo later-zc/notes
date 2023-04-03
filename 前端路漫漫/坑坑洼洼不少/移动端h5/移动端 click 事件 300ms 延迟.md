@@ -124,8 +124,10 @@
           distLimit = 10,
           distX = Math.abs(this._posStart[0] - pageX),
           distY = Math.abs(this._posStart[1] - pageY)
-        if (distX > distLimit || distY > distLimit) isMove = true
-        if (!isMove && Date.now() - this._timeStart <= 300) cb(e)
+        if (distX > distLimit || distY > distLimit) 
+          isMove = true
+        if (!isMove && Date.now() - this._timeStart <= 300) 
+          cb.call(this, e)
         e.preventDefault()
       })
     }
