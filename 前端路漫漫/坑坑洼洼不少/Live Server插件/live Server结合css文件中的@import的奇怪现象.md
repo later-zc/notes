@@ -20,7 +20,7 @@
 
 - 按理说：只有当这些属性发生改变时，才会触发 `transition` 过渡动画
 
-- 但是在没有触发0这些属性修改时，仅仅是给元素设置了上面的 `css` 规则，在 `vscode` 中每次保存，或浏览器中清空缓存并硬性加载时，会执行 `transition` 过渡动画（上面 `css` 中的 `opacity` 和 `translateX`），这就很奇怪
+- 但是在没有触发这些属性修改时，仅仅是给元素设置了上面的 `css` 规则，在 `vscode` 中每次保存，或浏览器中清空缓存并硬性加载时，会执行 `transition` 过渡动画（上面 `css` 中的 `opacity` 和 `translateX`），这就很奇怪
 
 
 
@@ -67,13 +67,13 @@
   </html>
   ```
 
-- `css`文件
+- `css` 文件
 
   ```css
-  /* a.css */
+  /* a.css文件中的内容 */
   @import './b.css';
   
-  /* b.css */
+  /* b.css文件中的内容 */
   .rule {
     width: 159px;
     height: 54px;
