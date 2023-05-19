@@ -21,7 +21,7 @@
   ```
 
   ```js
-  // main.js
+  // 入口文件：main.js
   console.log('---- main start ----')
   const a = require('./a')
   console.log('in main, a.done = %j', a.done)
@@ -170,19 +170,6 @@
     - `ES` 模块中，当前模块中导出的 `var` 定义的变量，因为作用域提升，允许在本模块代码执行之前访问（`export default` 导出除外），此时变量还未初始化，值为 `undefined`
     - `ES` 模块中，当前模块中导出的 `let`、`const` 定义的变量，没有作用域提升，不允许在本模块代码执行之前访问
   - 具体情况可以查看 前端工程化基础 > `ESM` 运行原理部分
-
-  
-
-
-
-
-
-
-
-
-
-
-
 
 
 
