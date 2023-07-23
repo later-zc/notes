@@ -51,25 +51,6 @@ win + ⬇ // 缩小窗口
 
 
 
-# 三. 浏览器快捷键
-
----
-
-```js
-F5  // 刷新
-Ctrl + F5  // 强制刷新
-
-Ctlr + W  // 关闭当前网页选项卡
-Ctrl + shift + T  // 恢复误关网页
-
-Ctrl +  // 网页放大
-Ctrl -  // 网页缩小  
-```
-
-
-
-
-
 # 参考链接
 
 - http://vue.cnsbq.com/list_14/68.html
