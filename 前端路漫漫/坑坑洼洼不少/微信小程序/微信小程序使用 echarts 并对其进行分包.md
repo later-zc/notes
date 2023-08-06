@@ -12,8 +12,8 @@
   - 整个小程序所有分包大小不超过 20M
   - 单个分包/主包大小不能超过 2M
 - 对小程序进行分包，可以优化小程序首次启动的下载时间，以及在多团队共同开发时可以更好的解耦协作
-- 修改前：项目主包1.4M大小，echarts目录文件就占600k，但echarts文件却未在主包中使用，被pageTenant分包中的文件所使用，但是因为echarts文件存在components文件中，从而被归入主包中
-- 修改后：echarts目录文件从components文件中提取出来作为一个分包，项目主包文件降至800k，echarts分包只在用户进入pageTenant分包某个页面时，才会被下载下来，echarts目录文件通过官网的echarts在线定制，包大小从590k降低至510k
+- 修改前：项目主包 `1.4M` 大小，`echarts` 目录文件就占 `600k`，但 `echarts` 文件却未在主包中使用，被 `pageTenant` 分包中的文件所使用，但是因为 `echarts` 文件存在 `components` 文件中，从而被归入主包中
+- 修改后：`echarts` 目录文件从 `components` 文件中提取出来作为一个分包，项目主包文件降至 `800k`，`echarts` 分包只在用户进入 `pageTenant` 分包某个页面时，才会被下载下来，`echarts` 目录文件通过官网的 `echarts` 在线定制，包大小从 `590k` 降低至 `510k` 
 
 <img src="assets/image-20230801101848553.png" alt="image-20230801101848553"  />
 
@@ -106,7 +106,7 @@
 
 # 3. 其它分包页面使用echarts
 
-- 分包页面的xxx.json配置
+- 分包页面的 `xxx.json` 配置
 
   ```json
   {
@@ -120,13 +120,13 @@
   }
   ```
 
-- 分包页面的xxx.wxml
+- 分包页面的 `xxx.wxml`
 
   ```html
   <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
   ```
 
-- 分包页面的xxx.js
+- 分包页面的 `xxx.js`
 
   ```js
   let echarts = null
@@ -139,10 +139,10 @@
 
 # 4. 为什么在 Vue 中使用 ECharts 时图表显示异常？
 
-- 如果你使用的是 Vue 3，请避免使用 `reactive` 及 `ref`
-- 如果你使用的是 Vue 2，请避免在 `data` 函数中声明 ECharts 的对象实例或使用 `Vue.observable` API
-- 上述均会导致 ECharts 的对象实例被代理成为响应式对象，影响 ECharts 对内部属性的访问，可能会导致图表无法正确显示等一系列意外问题，且会由于深度监听而极大地降低图表展示性能
-- 解决方案为：使用普通变量声明 ECharts 对象实例，或使用 `shallowRef` / `shallowReactive` / `markRaw` 等 API 防止 ECharts 对象实例被代理
+- 如果你使用的是 `Vue3`，请避免使用 `reactive` 及 `ref`
+- 如果你使用的是 `Vue2`，请避免在 `data` 函数中声明 `ECharts` 的对象实例或使用 `Vue.observable` API
+- 上述均会导致 `ECharts` 的对象实例被代理成为响应式对象，影响 `ECharts` 对内部属性的访问，可能会导致图表无法正确显示等一系列意外问题，且会由于深度监听而极大地降低图表展示性能
+- 解决方案为：使用普通变量声明 `ECharts` 对象实例，或使用 `shallowRef` / `shallowReactive` / `markRaw` 等 API 防止 `ECharts` 对象实例被代理
 
 - https://echarts.apache.org/zh/faq.html#ask-questions
 

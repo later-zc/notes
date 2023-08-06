@@ -1,14 +1,14 @@
-# 微信小程序内置组件radio修改大小
+# 微信小程序内置组件 radio 修改大小
 
 ---
 
 ## 前言
 
-- 修改`radio`内置组件的大小样式，发现通过设置`css`样式不能达到修改圆圈大小的效果，查阅官方文档，没有发现相关资料，查询社区，全是上来就是修改某些选择器（一开始不知道从何而来的），后经查阅相关网上资料，以及实践得出解决方案如下
+- 修改 `radio` 内置组件的大小样式，发现通过设置 `css` 样式不能达到修改圆圈大小的效果，查阅官方文档，没有发现相关资料，查询社区，全是上来就是修改某些选择器（一开始不知道从何而来的），后经查阅相关网上资料，以及实践得出解决方案如下
 
 ## 解决方案
 
-- 通过修改`.wx-radio-input`这个类名可以改变圆圈的大小
+- 通过修改 `.wx-radio-input` 这个类名可以改变圆圈的大小
 
   ```css
   /* 未选中的样式 */
@@ -48,4 +48,4 @@
 ## 相关资料
 
 - 获取小程序各个组件的默认样式：https://blog.csdn.net/Robin_star_/article/details/83269955
-- 小程序更改`checkbox`和`radio`默认样式：https://developers.weixin.qq.com/community/develop/doc/0002c84233032862c6f6bb13256404
+- 小程序更改 `checkbox` 和 `radio` 默认样式：https://developers.weixin.qq.com/community/develop/doc/0002c84233032862c6f6bb13256404
