@@ -1,0 +1,106 @@
+## 前言
+
+上代码：
+
+```vue
+<el-table
+          border
+          highlight-current-row
+          style="width: 100%; margin-top: 20px"
+          :data="tableData"
+          :cell-class-name="cellClassName"
+          @cell-click="handleCellClick"
+          >
+  <el-table-column
+                   v-for="item of tableHeader"
+                   :key="item"
+                   :prop="item"
+                   :label="item"
+                   >
+    <template v-slot="{ row, column }">
+<el-input
+          v-if="column[`editable_${row.index}_${column.index}`]"
+          :ref="`inputRef_${row.index}_${column.index}`"
+          v-model="row[item]"
+          @blur="handleInputBlur(row, column, $event)"
+          />
+<span v-else>{{ row[item] }}</span>
+    </template>
+  </el-table-column>
+</el-table>
+
+<script>
+  export default {
+    methods: {
+      cellClassName({ row, column, rowIndex, columnIndex }) {
+        // 通过cellClassName将el-table内部传递过来的rowIndex和columnIndex 添加到 row和column中
+        row.index = rowIndex 
+        column.index = columnIndex
+      },
+      handleInputBur(row, column, event) {
+        const inputRef = this.$refs[`inputRef_${row.index}_${column.index}`][0]
+        inputRef.blur()
+        // 删除失去焦点的input的ref和所添加editable属性
+        // Vue.delete，删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制
+        this.$delete(column, `editable_${row.index}_${column.index}`)
+        this.$nextTick(() => this.$delete(this.$refs, `inputRef_${row.index}_${column.index}`))
+      },
+      handleCellClick(row, column, cell, event) {
+        this.$set(column, [`editable_${row.index}_${column.index}`], true) // 要用Vue.set方法去修改，不然不会更新，因为el-table-column组件及其作用域插槽中相关的一些变量及其所处的上下文，导致对一些属性操作是不具备响应式的
+        this.$nextTick(() => {
+          const inputRef = this.$refs[`inputRef_${row.index}_${column.index}`][0]
+          inputRef.focus()
+          s})
+      }
+    }
+  }
+</script>
+```
+
+在做上传excel表格时，需要对上传解析的excel数据通过表格渲染出来，然后可以在表格中直接修改每一列数据，所以上面代码中我们做了如下操作：
+
+1. 需要知道点击的那个单元格，点击的时候，将input显示出来以供用户输入修改，然后在尝试的过程中，发现cellClick事件参数中获取不到点击单元格所在的rowIndex和columnIndex，所以就通过通过cellClassName将el-table内部传递过来的rowIndex和columnIndex 添加到 row和column中。
+2. 添加完成之后，row和column就都有了index了，这样在ref和v-if就都有根据索引生成的变量去控制了
+3. 我们就只需要点击的时候，拿到row和column的索引获取对应的变量，然后改变对应v-if的变量即可，但是我们是绑定在每一个column中，在实际过程中发现el-tabled的cell-click事件参数column与el_table-column插槽参数中的column不是同一个对象。这就导致input的blur事件处理的时候，无法将cell-click事件参数中的column变量隐藏,
+
+
+
+## 解决
+
+- data中新增一个变量记录对cell-click事件参数column的引用，blur的回调中，直接通过该变量修改对应的属性（`editable_${row.index}_${column.index}`）的值即可
+
+  ```js
+  export default {
+    data() {
+      return {
+        currentEditableColumn: null, // 记录当前可编辑的列的所绑定column对象，为了解决el-table的cell-click事件传递的column参数和el-table-column中默认插槽中的column对象不同
+      }  
+    },
+    methods: {
+      cellClassName({ row, column, rowIndex, columnIndex }) {
+        // 通过cellClassName将el-table内部传递过来的rowIndex和columnIndex 添加到 row和column中
+        row.index = rowIndex 
+        column.index = columnIndex
+      },
+      handleInputBur(row, column, event) {
+        console.log(column == this.currentEditableColumn) // false
+        const inputRef = this.$refs[`inputRef_${row.index}_${column.index}`][0]
+        inputRef.blur()
+        // 删除失去焦点的input的ref和所添加editable属性
+        // Vue.delete，删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制
+        this.$delete(this.currentEditableColumn, `editable_${row.index}_${column.index}`)
+        this.$nextTick(() => this.$delete(this.$refs, `inputRef_${row.index}_${column.index}`))
+      },
+      handleCellClick(row, column, cell, event) {
+        this.currentEditableColumn = column // 保存引用
+        this.$set(column, [`editable_${row.index}_${column.index}`], true) // 要用Vue.set方法去修改，不然不会更新，因为el-table-column组件及其作用域插槽中相关的一些变量及其所处的上下文，导致对一些属性操作是不具备响应式的
+        this.$nextTick(() => {
+          const inputRef = this.$refs[`inputRef_${row.index}_${column.index}`][0]
+          inputRef.focus()
+        })
+      }
+    }
+  }
+  </script>
+  ```
+
