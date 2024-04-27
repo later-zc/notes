@@ -18,13 +18,13 @@
                    :label="item"
                    >
     <template v-slot="{ row, column }">
-<el-input
-          v-if="column[`editable_${row.index}_${column.index}`]"
-          :ref="`inputRef_${row.index}_${column.index}`"
-          v-model="row[item]"
-          @blur="handleInputBlur(row, column, $event)"
-          />
-<span v-else>{{ row[item] }}</span>
+				<el-input
+            v-if="column[`editable_${row.index}_${column.index}`]"
+            :ref="`inputRef_${row.index}_${column.index}`"
+            v-model="row[item]"
+            @blur="handleInputBlur(row, column, $event)"
+            />
+				<span v-else>{{ row[item] }}</span>
     </template>
   </el-table-column>
 </el-table>
