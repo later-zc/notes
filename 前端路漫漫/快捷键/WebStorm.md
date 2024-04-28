@@ -8,6 +8,12 @@ alt + w
 
 # 搜索开启大小写匹配
 alt + c 
+
+# 关闭当前打开的标签页
+ctrl + w
+
+# 关闭当前打开的idea窗口
+ctrl + shift + w 
 ```
 
 
