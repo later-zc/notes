@@ -14,6 +14,12 @@ ctrl + w
 
 # 关闭当前打开的idea窗口
 ctrl + shift + w 
+
+# 查看上一个位置
+alt + <
+
+# 查看下一个位置
+alt + >
 ```
 
 
